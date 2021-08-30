@@ -8,11 +8,19 @@ import java.util.List;
 
 public class SpeakerServiceImpl implements SpeakerService {
 
-    private SpeakerRepository repository = new HibernateSpeakerRepositoryImpl();
 
-    @Override
+    //SpeakerRepository was hard coded but we would like to use Spring
+    //private SpeakerRepository repository = new HibernateSpeakerRepositoryImpl();
+    private SpeakerRepository repository;
+
+    public SpeakerServiceImpl(SpeakerRepository speakerRepository){
+        repository = speakerRepository;
+    }
     public List<Speaker> findAll(){
         return repository.findAll();
     }
 
+    public void setRepository(SpeakerRepository repository) {
+        this.repository = repository;
+    }
 }
